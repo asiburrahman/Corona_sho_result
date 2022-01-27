@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+         async function myfun() {
+
+try {
+    let p = fetch("https://api.covid19api.com/summary"); 
+    let data = await p;
+  
+  let datas = await data.json();
+  console.log(datas.Countries.length);
+  let b = "Bangladesh";
+    for (let index = 0; index < datas.Countries.length; index++) {
+        if (datas.Countries[index].Country==b) {
+            console.log("match");
+        }
+        
+    }
+
+
+//   const apidata = datas.Countries[index];
+//   console.log(apidata.Country);
+} catch (error) {
+    console.log(`The error is ${error}`);
+}
+  
+}
+myfun();
+    </script>
+</body>
+</html>

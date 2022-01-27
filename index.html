@@ -7,10 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <label for=""> Country Name: </label>
+<select name="" id="show" onchange="myfun1(this.value)">
+    <option value="Bangladesh">Bangladesh</option>
+    <option value="India">India</option>
+</select>
+
+<div id="first"></div>
+
+
+
+
 
     <script>
-         async function myfun() {
+         async function myfun(country_name) {
 
 try {
     let p = fetch("https://api.covid19api.com/summary"); 
@@ -18,10 +28,11 @@ try {
   
   let datas = await data.json();
   console.log(datas.Countries.length);
-  let b = "Bangladesh";
+  let b = country_name;
     for (let index = 0; index < datas.Countries.length; index++) {
         if (datas.Countries[index].Country==b) {
-            console.log("match");
+            document.getElementById('first').innerHTML=`<h1>Country Name is ${datas.Countries[index].Country} </h1> <h1>New effected ${datas.Countries[index].TotalConfirmed} </h1>  <h1> Total Death ${datas.Countries[index].TotalDeaths} </h1>
+            <h1> Total recover ${datas.Countries[index].TotalRecovered} <h1>`
         }
         
     }
@@ -34,7 +45,11 @@ try {
 }
   
 }
-myfun();
+function myfun1(thisvalue){
+    const  value1 = thisvalue;
+    myfun(value1);
+};
+
     </script>
 </body>
 </html>
